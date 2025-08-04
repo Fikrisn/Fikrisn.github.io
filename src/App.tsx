@@ -63,98 +63,6 @@ function App() {
     fetchRepositories();
   }, []);
 
-  // Modern Cursor Management
-  useEffect(() => {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    cursor.innerHTML = `
-      <div class="cursor-dot"></div>
-      <div class="cursor-ring"></div>
-    `;
-    document.body.appendChild(cursor);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      
-      // Create trail effect
-      createTrailDot(e.clientX, e.clientY);
-    };
-
-    const createTrailDot = (x: number, y: number) => {
-      const trail = document.createElement('div');
-      trail.className = 'mouse-trail-dot';
-      trail.style.left = x + 'px';
-      trail.style.top = y + 'px';
-      document.body.appendChild(trail);
-      
-      setTimeout(() => {
-        if (trail.parentNode) {
-          trail.parentNode.removeChild(trail);
-        }
-      }, 800);
-    };
-
-    const handleMouseEnter = (variant: string) => {
-      cursor.className = `custom-cursor ${variant}`;
-    };
-
-    const handleMouseLeave = () => {
-      cursor.className = 'custom-cursor';
-    };
-
-    // Add event listeners to interactive elements
-    const addHoverEffects = () => {
-      // Buttons and links
-      const buttons = document.querySelectorAll('button, a, .hover-target');
-      buttons.forEach(button => {
-        button.addEventListener('mouseenter', () => handleMouseEnter('button'));
-        button.addEventListener('mouseleave', handleMouseLeave);
-      });
-
-      // Text elements
-      const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span');
-      textElements.forEach(text => {
-        text.addEventListener('mouseenter', () => handleMouseEnter('text'));
-        text.addEventListener('mouseleave', handleMouseLeave);
-      });
-
-      // Hover cards
-      const hoverCards = document.querySelectorAll('.hover-card, .project-card, .skill-card');
-      hoverCards.forEach(card => {
-        card.addEventListener('mouseenter', () => handleMouseEnter('hover'));
-        card.addEventListener('mouseleave', handleMouseLeave);
-      });
-
-      // Links specifically
-      const links = document.querySelectorAll('a[href]');
-      links.forEach(link => {
-        link.addEventListener('mouseenter', () => handleMouseEnter('link'));
-        link.addEventListener('mouseleave', handleMouseLeave);
-      });
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-    
-    // Initialize hover effects after a delay to ensure DOM is ready
-    setTimeout(addHoverEffects, 100);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      if (cursor.parentNode) {
-        cursor.parentNode.removeChild(cursor);
-      }
-      
-      // Clean up existing trail dots
-      const trailDots = document.querySelectorAll('.mouse-trail-dot');
-      trailDots.forEach(dot => {
-        if (dot.parentNode) {
-          dot.parentNode.removeChild(dot);
-        }
-      });
-    };
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['hero', 'about', 'skills', 'projects', 'contact'];
@@ -347,7 +255,7 @@ function App() {
                 <Github className="w-6 h-6" />
               </a>
               <a 
-                href="https://linkedin.com/in/fikri-setiawan" 
+                href="https://www.linkedin.com/in/moch-fikri-setiawan-43183b252/" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
@@ -355,7 +263,7 @@ function App() {
                 <Linkedin className="w-6 h-6" />
               </a>
               <a 
-                href="mailto:fikri@example.com"
+                href="mailto:fikrismksore@gmail.com"
                 className="social-link"
               >
                 <Mail className="w-6 h-6" />
